@@ -198,3 +198,8 @@ transition:0.25s;
 transform:translateY(-3px);
 box-shadow:0 6px 18px rgba(120,100,255,0.35);
 }
+.server-ip{
+margin-top:10px;
+font-size:18px;
+opacity:0.9;
+}
