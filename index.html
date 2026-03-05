@@ -100,17 +100,22 @@ navigator.clipboard.writeText("sword.run.place");
 alert("Server IP copied!");
 }
 
-
 fetch("https://api.mcsrvstat.us/2/sword.run.place")
 .then(res => res.json())
 .then(data => {
 
+let status = document.getElementById("server-status");
+
 if(data.online){
-document.getElementById("server-status").innerText =
-data.players.online + " players online";
+
+if(data.players.online > 0){
+status.innerText = data.players.online + " players online";
 }else{
-document.getElementById("server-status").innerText =
-"Server currently offline";
+status.innerText = "Server online • Join now";
+}
+
+}else{
+status.innerText = "Server starting soon";
 }
 
 });
