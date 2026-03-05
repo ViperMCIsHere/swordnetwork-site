@@ -15,16 +15,18 @@
 <div id="particles"></div>
 
 <header class="navbar">
-    <div class="logo">
-        <img src="server-icon.png">
-        <span>SwordNetwork</span>
-    </div>
 
-    <nav>
-        <a href="rules.html">Rules</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="tos.html">ToS</a>
-    </nav>
+<div class="logo">
+<img src="server-icon.png" alt="Logo">
+<span>SwordNetwork</span>
+</div>
+
+<nav>
+<a href="rules.html">Rules</a>
+<a href="privacy.html">Privacy</a>
+<a href="tos.html">ToS</a>
+</nav>
+
 </header>
 
 
@@ -34,24 +36,24 @@
 
 <p>Competitive Gamemodes. No Pay-to-Win. Just Skill.</p>
 
-<div class="buttons">
+<div class="hero-buttons">
 
-<a class="btn primary" href="#">
-Join Now
-</a>
+<a class="btn join" href="#join">Join Now</a>
 
-<a class="btn discord" href="#">
-Discord
-</a>
+<a class="btn discord" href="https://discord.gg/DXV2WC3vZv" target="_blank">Discord</a>
+
+<button class="btn copy" onclick="copyIP()">Copy IP</button>
 
 </div>
 
-<div class="ip">sword.run.place</div>
+<p class="server-ip">sword.run.place</p>
+
+<p id="server-status">Checking server...</p>
 
 </section>
 
 
-<section class="features">
+<section class="features" id="join">
 
 <div class="card">
 <h3>Lifesteal</h3>
@@ -60,18 +62,75 @@ Discord
 
 <div class="card">
 <h3>Survival</h3>
-<p>Top the economy. Get the best gear.</p>
+<p>Top the economy. Have the best gear. Dominate the season.</p>
 </div>
 
 <div class="card">
 <h3>Seasonal Resets</h3>
-<p>Fresh starts with balanced gameplay.</p>
+<p>Fresh starts. Clean economy. Balanced gameplay.</p>
 </div>
 
 </section>
 
 
-<script src="particles.js"></script>
+<section class="discord-section">
+
+<h2>Join the Community</h2>
+
+<p>Get updates, events, and giveaways.</p>
+
+<a class="btn discord-large" href="https://discord.gg/DXV2WC3vZv" target="_blank">
+Join our Discord
+</a>
+
+</section>
+
+
+<footer class="footer">
+
+<p>© 2026 SwordNetwork</p>
+
+</footer>
+
+
+<script>
+
+function copyIP(){
+navigator.clipboard.writeText("sword.run.place");
+alert("Server IP copied!");
+}
+
+
+fetch("https://api.mcsrvstat.us/2/sword.run.place")
+.then(res => res.json())
+.then(data => {
+
+if(data.online){
+document.getElementById("server-status").innerText =
+data.players.online + " players online";
+}else{
+document.getElementById("server-status").innerText =
+"Server currently offline";
+}
+
+});
+
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+
+});
+
+});
+
+document.querySelectorAll(".card").forEach(el => observer.observe(el));
+
+</script>
 
 </body>
 </html>
