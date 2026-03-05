@@ -184,3 +184,17 @@ padding:80px 20px;
 max-width:900px;
 margin:auto;
 }
+.btn.join{
+background:linear-gradient(135deg,#6a5cff,#8b5cff);
+color:white;
+padding:12px 22px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+transition:0.25s;
+}
+
+.btn.join:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 18px rgba(120,100,255,0.35);
+}
