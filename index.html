@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>SwordNetwork</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwordNetwork</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
-<script>
-const particleContainer = document.getElementById("particles");
 
-for (let i = 0; i < 40; i++) {
-    const p = document.createElement("div");
-    p.classList.add("particle");
-
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.animationDuration = (5 + Math.random() * 10) + "s";
-    p.style.opacity = Math.random();
-
-    particleContainer.appendChild(p);
-}
-</script>
 <body>
 
-<header>
-    <div class="nav">
-        <div class="logo">
-            <img src="server-icon.png" alt="SwordNetwork Logo">
-            <span>SwordNetwork</span>
-        </div>
-        <div class="links">
-            <a href="rules.html">Rules</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="tos.html">ToS</a>
-        </div>
+<div id="particles"></div>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="server-icon.png">
+        <span>SwordNetwork</span>
     </div>
+
+    <nav>
+        <a href="rules.html">Rules</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="tos.html">ToS</a>
+    </nav>
 </header>
 
+
 <section class="hero">
-    <h1>Sharpen Your Edge.</h1>
-    <p>Competitive Gamemodes. No Pay-to-Win. Just Skill.</p>
 
-    <div class="buttons">
-        <button onclick="copyIP()">Join Now</button>
-        <a href="https://discord.gg/RRQFQUkje2" target="_blank" class="discord">Discord</a>
-    </div>
+<h1>Sharpen Your Edge.</h1>
 
-    <div class="ip-box">
-        sword.run.place
-    </div>
+<p>Competitive Gamemodes. No Pay-to-Win. Just Skill.</p>
+
+<div class="buttons">
+
+<a class="btn primary" href="#">
+Join Now
+</a>
+
+<a class="btn discord" href="#">
+Discord
+</a>
+
+</div>
+
+<div class="ip">sword.run.place</div>
+
 </section>
+
 
 <section class="features">
-    <div class="card">
-        <h3>Lifesteal</h3>
-        <p>Win fights. Steal hearts. Dominate the season.</p>
-    </div>
-    <div class="card">
-        <h3>Survival</h3>
-        <p>Top the economy. Have the best gear. Dominate the season</p>
-    </div>
-    <div class="card">
-        <h3>Seasonal Resets</h3>
-        <p>Fresh starts. Clean economy. Balanced gameplay.</p>
-    </div>
+
+<div class="card">
+<h3>Lifesteal</h3>
+<p>Win fights. Steal hearts. Dominate the season.</p>
+</div>
+
+<div class="card">
+<h3>Survival</h3>
+<p>Top the economy. Get the best gear.</p>
+</div>
+
+<div class="card">
+<h3>Seasonal Resets</h3>
+<p>Fresh starts with balanced gameplay.</p>
+</div>
+
 </section>
 
-<footer>
-    <p>© 2026 SwordNetwork. Not affiliated with Mojang.</p>
-    <p>Contact: vipermcishere@gmail.com</p>
-</footer>
 
-<script>
-function copyIP() {
-    navigator.clipboard.writeText("sword.run.place");
-    alert("IP copied to clipboard!");
-}
-</script>
+<script src="particles.js"></script>
 
 </body>
-<div class="background"></div>
-<div id="particles"></div>
 </html>
