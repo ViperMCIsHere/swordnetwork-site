@@ -8,149 +8,140 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div id="particles"></div>
+<canvas id="stars"></canvas>
 
-<header class="navbar">
+<header class="hero">
 
-<div class="logo">
-<img src="server-icon.png" alt="Logo">
-<span>SwordNetwork</span>
-</div>
+<h1>SwordNetwork</h1>
 
-<nav>
-<a href="rules.html">Rules</a>
-<a href="privacy.html">Privacy</a>
-<a href="tos.html">ToS</a>
-</nav>
+<p class="subtitle">
+Competitive Gamemodes. No Pay-to-Win.
+</p>
 
-</header>
+<div class="buttons">
 
+<button class="join-btn" onclick="copyIP()">
+Join Now
+</button>
 
-<section class="hero">
-
-<h1>Sharpen Your Edge.</h1>
-
-<p>Competitive Gamemodes. No Pay-to-Win. Just Skill.</p>
-
-<div class="hero-buttons">
-
-<a class="btn join" href="#join">Join Now</a>
-
-<a class="btn discord" href="https://discord.gg/DXV2WC3vZv" target="_blank">Discord</a>
-
-<button class="btn copy" onclick="copyIP()">Copy IP</button>
+<a class="discord-btn" href="https://discord.gg/DXV2WC3vZv" target="_blank">
+Discord
+</a>
 
 </div>
 
 <p class="server-ip">sword.run.place</p>
 
-<p id="server-status">Checking server...</p>
+</header>
 
-</section>
+<section class="gamemodes">
 
-
-<section class="features" id="join">
-
-<div class="card">
+<div class="mode">
 <h3>Lifesteal</h3>
 <p>Win fights. Steal hearts. Dominate the season.</p>
 </div>
 
-<div class="card">
+<div class="mode">
 <h3>Survival</h3>
 <p>Top the economy. Have the best gear. Dominate the season.</p>
 </div>
 
-<div class="card">
-<h3>Seasonal Resets</h3>
-<p>Fresh starts. Clean economy. Balanced gameplay.</p>
-</div>
-
 </section>
 
 
-<section class="discord-section card">
-
-<h2>Join the Community</h2>
-
-<p>Get updates, events, and giveaways.</p>
-
-<a class="btn discord-large" href="https://discord.gg/DXV2WC3vZv" target="_blank">
-Join our Discord
-</a>
-
-</section>
-
-
-<footer class="footer">
+<footer>
 
 <p>© 2026 SwordNetwork</p>
 
 </footer>
 
 
+<div id="discord-popup">
+
+<div class="popup-box">
+
+<button class="close" onclick="closePopup()">✕</button>
+
+<h2>Join the Community</h2>
+
+<p>Get updates, events, and giveaways.</p>
+
+<a href="https://discord.gg/DXV2WC3vZv" target="_blank" class="discord-btn">
+Join our Discord
+</a>
+
+</div>
+
+</div>
+
+
 <script>
 
 function copyIP(){
+
 navigator.clipboard.writeText("sword.run.place");
+
 alert("Server IP copied!");
+
 }
 
-fetch("https://api.mcsrvstat.us/2/sword.run.place")
-.then(res => res.json())
-.then(data => {
 
-let status = document.getElementById("server-status");
+function closePopup(){
 
-if(data.online){
+document.getElementById("discord-popup").classList.remove("show");
 
-if(data.players.online > 0){
-status.innerText = data.players.online + " players online";
-}else{
-status.innerText = "Server online • Join now";
 }
 
-}else{
-status.innerText = "Server starting soon";
-}
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+document.getElementById("discord-popup").classList.add("show");
+},2500);
 
 });
 
 
-const observer = new IntersectionObserver(entries => {
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
 
-entries.forEach(entry => {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-if(entry.isIntersecting){
-entry.target.classList.add("show");
+let stars=[];
+
+for(let i=0;i<120;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2
+});
 }
 
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+stars.forEach(star=>{
+ctx.beginPath();
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
+ctx.fill();
 });
 
-});
+requestAnimationFrame(draw);
+}
 
-document.querySelectorAll(".card").forEach(el => observer.observe(el));
+draw();
 
 </script>
-<div id="discord-popup" class="discord-popup">
 
-  <div class="discord-box">
-
-    <button class="close-popup" onclick="closeDiscord()">✕</button>
-
-    <h2>Join the SwordNetwork Discord</h2>
-    <p>Events, updates, giveaways and community chat.</p>
-
-    <a href="https://discord.gg/DXV2WC3vZv" target="_blank" class="discord-btn">
-      Join Discord
-    </a>
-
-  </div>
-
-</div>
 </body>
+
 </html>
