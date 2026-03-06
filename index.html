@@ -1,147 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SwordNetwork</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SwordNetwork</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<canvas id="stars"></canvas>
+  <!-- Stars canvas (background) -->
+  <canvas id="stars"></canvas>
 
-<header class="hero">
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="server-icon.png" alt="SwordNetwork logo" class="logo-img">
+        <span class="brand-name">SwordNetwork</span>
+      </div>
 
-<h1>SwordNetwork</h1>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="rules.html">Rules</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="tos.html">ToS</a>
+      </nav>
+    </div>
+  </header>
 
-<p class="subtitle">
-Competitive Gamemodes. No Pay-to-Win.
-</p>
+  <!-- HERO -->
+  <main>
+    <section class="hero">
+      <h1 class="title">Sharpen Your Edge.</h1>
+      <p class="subtitle">Competitive Gamemodes. No Pay-to-Win. Just Skill.</p>
 
-<div class="buttons">
+      <div class="cta-row">
+        <button id="open-join" class="btn btn-join">Join Now</button>
+        <a class="btn btn-discord" href="https://discord.gg/DXV2WC3vZv" target="_blank" rel="noopener">Discord</a>
+        <button id="copy-ip" class="btn btn-ip">Copy IP</button>
+      </div>
 
-<button class="join-btn" onclick="copyIP()">
-Join Now
-</button>
+      <p class="server-ip">sword.run.place</p>
+    </section>
 
-<a class="discord-btn" href="https://discord.gg/DXV2WC3vZv" target="_blank">
-Discord
-</a>
+    <!-- GAMEMODES -->
+    <section class="cards" id="features">
+      <article class="card reveal">
+        <h3>Lifesteal</h3>
+        <p>Win fights. Steal hearts. Dominate the season.</p>
+      </article>
 
-</div>
+      <article class="card reveal">
+        <h3>Survival</h3>
+        <p>Top the economy. Have the best gear. Dominate the season.</p>
+      </article>
 
-<p class="server-ip">sword.run.place</p>
+      <article class="card reveal">
+        <h3>Seasonal Resets</h3>
+        <p>Fresh starts. Clean economy. Balanced gameplay.</p>
+      </article>
+    </section>
+  </main>
 
-</header>
+  <footer class="site-footer">
+    <p>© 2026 SwordNetwork</p>
+  </footer>
 
-<section class="gamemodes">
+  <!-- DISCORD POPUP (hidden by default) -->
+  <div id="discord-overlay" class="overlay" aria-hidden="true">
+    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+      <button class="popup-close" id="close-popup" aria-label="Close">✕</button>
 
-<div class="mode">
-<h3>Lifesteal</h3>
-<p>Win fights. Steal hearts. Dominate the season.</p>
-</div>
+      <h2 id="popup-title">Join the Community</h2>
+      <p class="popup-desc">Get updates, events, and giveaways.</p>
 
-<div class="mode">
-<h3>Survival</h3>
-<p>Top the economy. Have the best gear. Dominate the season.</p>
-</div>
-
-</section>
-
-
-<footer>
-
-<p>© 2026 SwordNetwork</p>
-
-</footer>
-
-
-<div id="discord-popup">
-
-<div class="popup-box">
-
-<button class="close" onclick="closePopup()">✕</button>
-
-<h2>Join the Community</h2>
-
-<p>Get updates, events, and giveaways.</p>
-
-<a href="https://discord.gg/DXV2WC3vZv" target="_blank" class="discord-btn">
-Join our Discord
-</a>
-
-</div>
-
-</div>
-
+      <a class="btn btn-discord-large" href="https://discord.gg/DXV2WC3vZv" target="_blank" rel="noopener">Join our Discord</a>
+    </div>
+  </div>
 
 <script>
-
-function copyIP(){
-
-navigator.clipboard.writeText("sword.run.place");
-
-alert("Server IP copied!");
-
-}
-
-
-function closePopup(){
-
-document.getElementById("discord-popup").classList.remove("show");
-
-}
-
-
-window.addEventListener("load",()=>{
-
-setTimeout(()=>{
-document.getElementById("discord-popup").classList.add("show");
-},2500);
-
+/* --- Copy IP --- */
+document.getElementById('copy-ip').addEventListener('click', () => {
+  navigator.clipboard.writeText('sword.run.place').then(() => {
+    // lightweight feedback, non-blocking
+    const btn = document.getElementById('copy-ip');
+    const prev = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => btn.textContent = prev, 1200);
+  }).catch(()=> {
+    alert('Could not copy. Manually select and copy: sword.run.place');
+  });
 });
 
+/* --- Popup open/close (only opens on Join Now click) --- */
+const overlay = document.getElementById('discord-overlay');
+const openBtn = document.getElementById('open-join');
+const closeBtn = document.getElementById('close-popup');
 
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let stars=[];
-
-for(let i=0;i<120;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2
-});
+function openPopup() {
+  overlay.classList.add('visible');
+  overlay.setAttribute('aria-hidden','false');
+  // prevent body scrolling while open
+  document.body.style.overflow = 'hidden';
+}
+function closePopup() {
+  overlay.classList.remove('visible');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
 }
 
-function draw(){
+openBtn.addEventListener('click', openPopup);
+closeBtn.addEventListener('click', closePopup);
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="white";
-
-stars.forEach(star=>{
-ctx.beginPath();
-ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
-ctx.fill();
+// close when clicking outside popup content
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closePopup();
 });
 
-requestAnimationFrame(draw);
+/* --- Reveal on scroll for cards --- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* --- Lightweight stars background (responsive) --- */
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+
+let stars = [];
+function resizeCanvas() {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  // regenerate stars proportional to screen
+  const count = Math.max(60, Math.floor((canvas.width * canvas.height) / 90000));
+  stars = [];
+  for (let i=0;i<count;i++){
+    stars.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.6 + 0.2,
+      a: Math.random()*0.9 + 0.1
+    });
+  }
 }
-
-draw();
-
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for (const s of stars){
+    ctx.globalAlpha = s.a;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fill();
+  }
+  requestAnimationFrame(drawStars);
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+drawStars();
 </script>
 
 </body>
-
 </html>
