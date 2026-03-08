@@ -17,38 +17,29 @@
 
 </head>
 
-
 <body>
 
 <canvas id="stars"></canvas>
 
-
-<header class="nav">
+<header class="nav" id="navbar">
 
 <div class="nav-inner">
 
 <div class="brand">
-
 <img src="server-icon.png" class="logo-img" alt="SwordNetwork Logo">
-
 <span class="brand-name">SwordNetwork</span>
-
 </div>
 
 <nav class="links">
-
 <a href="index.html">Home</a>
 <a href="rules.html">Rules</a>
 <a href="privacy.html">Privacy</a>
 <a href="tos.html">ToS</a>
-
 </nav>
 
 </div>
 
 </header>
-
-
 
 <main>
 
@@ -72,70 +63,51 @@ Discord
 
 </div>
 
-<p class="server-ip">
+<p class="server-ip" id="copyIP">
 sword.run.place
 </p>
 
 </section>
 
-
-
 <section class="gamemodes">
 
 <div class="mode-card">
-
 <h3>Lifesteal</h3>
-
 <p>
 Win fights and steal hearts from enemies.
-Dominate the PvP economy.
+Dominate the PvP economy and control the server.
 </p>
-
 </div>
 
 <div class="mode-card">
-
 <h3>Survival</h3>
-
 <p>
-Build, trade, and progress in a balanced
-player-driven economy.
+Build massive bases, trade with players,
+and grow within a balanced economy.
 </p>
-
 </div>
 
 <div class="mode-card">
-
 <h3>Competitive Events</h3>
-
 <p>
 Weekly PvP tournaments and community
-events with rewards.
+events with special rewards.
 </p>
-
 </div>
 
 </section>
 
 </main>
 
-
-
 <footer class="site-footer">
-
 © 2026 SwordNetwork
-
 </footer>
-
-
 
 <div id="joinPopup" class="popup">
 
 <div class="popup-box">
 
-<button id="closePopup" class="popup-close">
-×
-</button>
+<button id="closePopup" class="popup-close">×</button>
 
 <h2>Join the Community</h2>
 
@@ -151,8 +123,6 @@ Join our Discord
 </div>
 
 </div>
-
-
 
 <script>
 
@@ -176,7 +146,39 @@ popup.style.display = "none";
 
 </script>
 
+<script>
 
+const ip = document.getElementById("copyIP");
+
+ip.onclick = () => {
+
+navigator.clipboard.writeText("sword.run.place");
+
+ip.innerText = "Copied IP!";
+
+setTimeout(() => {
+ip.innerText = "sword.run.place";
+},2000);
+
+};
+
+</script>
+
+<script>
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+if(window.scrollY > 20){
+navbar.style.background = "rgba(0,0,0,0.45)";
+}else{
+navbar.style.background = "rgba(0,0,0,0.25)";
+}
+
+});
+
+</script>
 
 <script>
 
@@ -188,27 +190,35 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-for (let i = 0; i < 120; i++) {
+for(let i=0;i<140;i++){
 
 stars.push({
-x: Math.random() * canvas.width,
-y: Math.random() * canvas.height,
-r: Math.random() * 1.5,
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*1.8,
+speed:Math.random()*0.2
 });
 
 }
 
-function drawStars() {
+function drawStars(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle = "white";
+ctx.fillStyle="white";
 
-stars.forEach(star => {
+stars.forEach(star=>{
 
 ctx.beginPath();
-ctx.arc(star.x, star.y, star.r, 0, Math.PI*2);
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
 ctx.fill();
+
+star.y += star.speed;
+
+if(star.y > canvas.height){
+star.y = 0;
+star.x = Math.random()*canvas.width;
+}
 
 });
 
@@ -218,15 +228,14 @@ requestAnimationFrame(drawStars);
 
 drawStars();
 
-window.onresize = () => {
+window.addEventListener("resize",()=>{
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-};
+});
 
 </script>
-
 
 </body>
 </html>
