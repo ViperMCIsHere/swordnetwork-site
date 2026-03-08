@@ -1,134 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SwordNetwork • Terms of Service</title>
+<title>SwordNetwork</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 
 </head>
+
 
 <body>
 
 <canvas id="stars"></canvas>
 
+
 <header class="nav">
+
 <div class="nav-inner">
 
 <div class="brand">
-<img src="server-icon.png" class="logo-img">
+
+<img src="server-icon.png" class="logo-img" alt="SwordNetwork Logo">
+
 <span class="brand-name">SwordNetwork</span>
+
 </div>
 
 <nav class="links">
+
 <a href="index.html">Home</a>
 <a href="rules.html">Rules</a>
 <a href="privacy.html">Privacy</a>
 <a href="tos.html">ToS</a>
+
 </nav>
 
 </div>
+
 </header>
 
 
-<main class="legal">
 
-<h1>Terms of Service</h1>
+<main>
 
-<p>Last Updated: 2026</p>
+<section class="hero">
 
-<h2>1. Acceptance of Terms</h2>
-<p>
-By accessing or using any SwordNetwork services including our Minecraft servers,
-Discord community, or website, you agree to these Terms of Service.
-If you do not agree with these terms you must stop using our services immediately.
+<h1 class="hero-title">SwordNetwork</h1>
+
+<p class="hero-subtitle">
+Competitive Gamemodes. No Pay-to-Win.
 </p>
 
-<h2>2. About SwordNetwork</h2>
-<p>
-SwordNetwork is operated by SwordNetwork A.S and is based in Kuwait.
-The service provides Minecraft multiplayer servers and related community services.
+<div class="hero-buttons">
+
+<button id="joinButton" class="btn-primary">
+Join Now
+</button>
+
+<a href="https://discord.gg/" target="_blank" class="btn-secondary">
+Discord
+</a>
+
+</div>
+
+<p class="server-ip">
+sword.run.place
 </p>
 
-<h2>3. Eligibility</h2>
+</section>
+
+
+
+<section class="gamemodes">
+
+<div class="mode-card">
+
+<h3>Lifesteal</h3>
+
 <p>
-Players must be at least 13 years old to use the services.
-If a player below 13 attempts to use the service, their access may be suspended
-until parental consent is provided.
+Win fights and steal hearts from enemies.
+Dominate the PvP economy.
 </p>
 
-<h2>4. Accounts</h2>
+</div>
+
+<div class="mode-card">
+
+<h3>Survival</h3>
+
 <p>
-Players are responsible for their own Minecraft accounts.
-Account sharing, selling, or transferring accounts used on SwordNetwork
-is not allowed.
-If you share your account, you are responsible for any consequences including
-bans, mutes, or loss of ranks.
+Build, trade, and progress in a balanced
+player-driven economy.
 </p>
 
-<h2>5. Server Rules</h2>
+</div>
+
+<div class="mode-card">
+
+<h3>Competitive Events</h3>
+
 <p>
-All players must follow the official SwordNetwork rules.
-Failure to follow the rules may result in punishments including warnings,
-mutes, temporary bans, or permanent bans depending on the severity.
+Weekly PvP tournaments and community
+events with rewards.
 </p>
 
-<h2>6. Purchases and Payments</h2>
-<p>
-SwordNetwork may offer optional purchases such as ranks or perks.
-These payments support the server and help maintain operations.
-Purchases are generally non-refundable unless required by law or approved
-by the administration with valid proof and reasoning.
-</p>
+</div>
 
-<h2>7. Punishments</h2>
-<p>
-Staff may issue punishments including warnings, mutes, suspensions,
-temporary bans, or permanent bans if rules are violated.
-Punishments may be applied without prior warning when necessary.
-</p>
-
-<h2>8. Service Availability</h2>
-<p>
-SwordNetwork does not guarantee that the server or services will always
-be available. Maintenance, resets, or technical problems may occur.
-We are not responsible for lost items, progress, or in-game currency.
-</p>
-
-<h2>9. Termination</h2>
-<p>
-SwordNetwork reserves the right to suspend or terminate access
-to any player for violations of rules or these Terms of Service.
-</p>
-
-<h2>10. Data and Privacy</h2>
-<p>
-Use of the server may require basic data such as Minecraft username,
-IP address, and gameplay data. These are used strictly to operate
-the server and maintain security.
-</p>
-
-<h2>11. Modifications</h2>
-<p>
-These Terms of Service may be updated at any time.
-Continued use of SwordNetwork means you accept the updated terms.
-</p>
-
-<h2>12. Jurisdiction</h2>
-<p>
-These terms are governed by applicable laws in Kuwait.
-</p>
+</section>
 
 </main>
 
 
+
 <footer class="site-footer">
+
 © 2026 SwordNetwork
+
 </footer>
+
+
+
+<div id="joinPopup" class="popup">
+
+<div class="popup-box">
+
+<button id="closePopup" class="popup-close">
+×
+</button>
+
+<h2>Join the Community</h2>
+
+<p>
+Get updates, events and giveaways
+inside our Discord community.
+</p>
+
+<a href="https://discord.gg/" target="_blank" class="btn-primary">
+Join our Discord
+</a>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+const popup = document.getElementById("joinPopup");
+const openBtn = document.getElementById("joinButton");
+const closeBtn = document.getElementById("closePopup");
+
+openBtn.onclick = () => {
+popup.style.display = "flex";
+};
+
+closeBtn.onclick = () => {
+popup.style.display = "none";
+};
+
+window.onclick = (e) => {
+if (e.target === popup) {
+popup.style.display = "none";
+}
+};
+
+</script>
+
+
+
+<script>
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for (let i = 0; i < 120; i++) {
+
+stars.push({
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+r: Math.random() * 1.5,
+});
+
+}
+
+function drawStars() {
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "white";
+
+stars.forEach(star => {
+
+ctx.beginPath();
+ctx.arc(star.x, star.y, star.r, 0, Math.PI*2);
+ctx.fill();
+
+});
+
+requestAnimationFrame(drawStars);
+
+}
+
+drawStars();
+
+window.onresize = () => {
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+};
+
+</script>
+
 
 </body>
 </html>
