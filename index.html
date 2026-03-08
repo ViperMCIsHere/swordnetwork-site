@@ -26,7 +26,7 @@
 <div class="nav-inner">
 
 <div class="brand">
-<img src="server-icon.png" class="logo-img" alt="SwordNetwork Logo">
+<img src="server-icon.png" class="logo-img">
 <span class="brand-name">SwordNetwork</span>
 </div>
 
@@ -63,36 +63,108 @@ Discord
 
 </div>
 
-<p class="server-ip" id="copyIP">
+<p class="server-ip">
 sword.run.place
 </p>
 
+<div class="server-status">
+<span id="statusDot"></span>
+<span id="statusText">Checking server...</span>
+</div>
+
 </section>
+
+
+<section class="hero">
+
+<h2>Server Trailer</h2>
+
+<div class="video-box">
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+title="SwordNetwork Trailer"
+frameborder="0"
+allowfullscreen>
+
+</iframe>
+
+</div>
+
+</section>
+
 
 <section class="gamemodes">
 
 <div class="mode-card">
+
 <h3>Lifesteal</h3>
+
 <p>
 Win fights and steal hearts from enemies.
 Dominate the PvP economy and control the server.
 </p>
+
 </div>
 
 <div class="mode-card">
+
 <h3>Survival</h3>
+
 <p>
 Build massive bases, trade with players,
 and grow within a balanced economy.
 </p>
+
 </div>
 
 <div class="mode-card">
+
 <h3>Competitive Events</h3>
+
 <p>
 Weekly PvP tournaments and community
 events with special rewards.
 </p>
+
+</div>
+
+</section>
+
+
+<section class="gamemodes">
+
+<div class="mode-card">
+
+<h3>No Pay-to-Win</h3>
+
+<p>
+All players compete on equal footing.
+Skill and strategy matter more than purchases.
+</p>
+
+</div>
+
+<div class="mode-card">
+
+<h3>Active Community</h3>
+
+<p>
+Events, tournaments and active moderators
+keep the server alive.
+</p>
+
+</div>
+
+<div class="mode-card">
+
+<h3>Balanced PvP</h3>
+
+<p>
+Combat rewards strategy and teamwork
+rather than exploits.
+</p>
+
 </div>
 
 </section>
@@ -101,7 +173,9 @@ events with special rewards.
 
 <footer class="site-footer">
 © 2026 SwordNetwork. Not affiliated with Mojang in any way.
+
 </footer>
+
 
 <div id="joinPopup" class="popup">
 
@@ -109,20 +183,27 @@ events with special rewards.
 
 <button id="closePopup" class="popup-close">×</button>
 
-<h2>Join the Community</h2>
+<h2>Join SwordNetwork</h2>
 
-<p>
-Get updates, events and giveaways
-inside our Discord community.
+<p>Add this server in Minecraft:</p>
+
+<div class="server-box">
+sword.run.place
+</div>
+
+<button id="copyButton" class="btn-primary">
+Copy IP
+</button>
+
+<p class="join-help">
+Minecraft → Multiplayer → Add Server → Paste IP
 </p>
 
-<a href="https://discord.gg/" target="_blank" class="btn-primary">
-Join our Discord
-</a>
-
 </div>
 
 </div>
+
+
 
 <script>
 
@@ -146,23 +227,73 @@ popup.style.display = "none";
 
 </script>
 
+
+
 <script>
 
-const ip = document.getElementById("copyIP");
+const copyBtn = document.getElementById("copyButton");
 
-ip.onclick = () => {
+copyBtn.onclick = () => {
 
 navigator.clipboard.writeText("sword.run.place");
 
-ip.innerText = "Copied IP!";
+copyBtn.innerText = "Copied!";
 
 setTimeout(() => {
-ip.innerText = "sword.run.place";
+copyBtn.innerText = "Copy IP";
 },2000);
 
 };
 
 </script>
+
+
+
+<script>
+
+async function checkServer() {
+
+try {
+
+const res = await fetch("https://api.mcsrvstat.us/2/sword.run.place");
+const data = await res.json();
+
+const text = document.getElementById("statusText");
+const dot = document.getElementById("statusDot");
+
+if(data.online){
+
+const players = data.players.online;
+
+if(players > 0){
+text.innerText = players + " players online";
+}else{
+text.innerText = "Server Idle";
+}
+
+dot.style.background = "#4cff7a";
+
+}else{
+
+text.innerText = "Server Offline";
+dot.style.background = "#ff4c4c";
+
+}
+
+} catch {
+
+document.getElementById("statusText").innerText = "Status unavailable";
+
+}
+
+}
+
+checkServer();
+setInterval(checkServer,30000);
+
+</script>
+
+
 
 <script>
 
@@ -179,6 +310,8 @@ navbar.style.background = "rgba(0,0,0,0.25)";
 });
 
 </script>
+
+
 
 <script>
 
@@ -236,6 +369,7 @@ canvas.height = window.innerHeight;
 });
 
 </script>
+
 
 </body>
 </html>
