@@ -1,171 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SwordNetwork</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SwordNetwork • Terms of Service</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-  <!-- Stars canvas (background) -->
-  <canvas id="stars"></canvas>
+<canvas id="stars"></canvas>
 
-  <!-- NAVBAR -->
-  <header class="nav">
-    <div class="nav-inner">
-      <div class="brand">
-        <img src="server-icon.png" alt="SwordNetwork logo" class="logo-img">
-        <span class="brand-name">SwordNetwork</span>
-      </div>
+<header class="nav">
+<div class="nav-inner">
 
-      <nav class="links">
-        <a href="index.html">Home</a>
-        <a href="rules.html">Rules</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="tos.html">ToS</a>
-      </nav>
-    </div>
-  </header>
+<div class="brand">
+<img src="server-icon.png" class="logo-img">
+<span class="brand-name">SwordNetwork</span>
+</div>
 
-  <!-- HERO -->
-  <main>
-    <section class="hero">
-      <h1 class="title">Sharpen Your Edge.</h1>
-      <p class="subtitle">Competitive Gamemodes. No Pay-to-Win. Just Skill.</p>
+<nav class="links">
+<a href="index.html">Home</a>
+<a href="rules.html">Rules</a>
+<a href="privacy.html">Privacy</a>
+<a href="tos.html">ToS</a>
+</nav>
 
-      <div class="cta-row">
-        <button id="open-join" class="btn btn-join">Join Now</button>
-        <a class="btn btn-discord" href="https://discord.gg/DXV2WC3vZv" target="_blank" rel="noopener">Discord</a>
-        <button id="copy-ip" class="btn btn-ip">Copy IP</button>
-      </div>
+</div>
+</header>
 
-      <p class="server-ip">sword.run.place</p>
-    </section>
 
-    <!-- GAMEMODES -->
-    <section class="cards" id="features">
-      <article class="card reveal">
-        <h3>Lifesteal</h3>
-        <p>Win fights. Steal hearts. Dominate the season.</p>
-      </article>
+<main class="legal">
 
-      <article class="card reveal">
-        <h3>Survival</h3>
-        <p>Top the economy. Have the best gear. Dominate the season.</p>
-      </article>
+<h1>Terms of Service</h1>
 
-      <article class="card reveal">
-        <h3>Seasonal Resets</h3>
-        <p>Fresh starts. Clean economy. Balanced gameplay.</p>
-      </article>
-    </section>
-  </main>
+<p>Last Updated: 2026</p>
 
-  <footer class="site-footer">
-    <p>© 2026 SwordNetwork</p>
-  </footer>
+<h2>1. Acceptance of Terms</h2>
+<p>
+By accessing or using any SwordNetwork services including our Minecraft servers,
+Discord community, or website, you agree to these Terms of Service.
+If you do not agree with these terms you must stop using our services immediately.
+</p>
 
-  <!-- DISCORD POPUP (hidden by default) -->
-  <div id="discord-overlay" class="overlay" aria-hidden="true">
-    <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
-      <button class="popup-close" id="close-popup" aria-label="Close">✕</button>
+<h2>2. About SwordNetwork</h2>
+<p>
+SwordNetwork is operated by SwordNetwork A.S and is based in Kuwait.
+The service provides Minecraft multiplayer servers and related community services.
+</p>
 
-      <h2 id="popup-title">Join the Community</h2>
-      <p class="popup-desc">Get updates, events, and giveaways.</p>
+<h2>3. Eligibility</h2>
+<p>
+Players must be at least 13 years old to use the services.
+If a player below 13 attempts to use the service, their access may be suspended
+until parental consent is provided.
+</p>
 
-      <a class="btn btn-discord-large" href="https://discord.gg/DXV2WC3vZv" target="_blank" rel="noopener">Join our Discord</a>
-    </div>
-  </div>
+<h2>4. Accounts</h2>
+<p>
+Players are responsible for their own Minecraft accounts.
+Account sharing, selling, or transferring accounts used on SwordNetwork
+is not allowed.
+If you share your account, you are responsible for any consequences including
+bans, mutes, or loss of ranks.
+</p>
 
-<script>
-/* --- Copy IP --- */
-document.getElementById('copy-ip').addEventListener('click', () => {
-  navigator.clipboard.writeText('sword.run.place').then(() => {
-    // lightweight feedback, non-blocking
-    const btn = document.getElementById('copy-ip');
-    const prev = btn.textContent;
-    btn.textContent = 'Copied';
-    setTimeout(() => btn.textContent = prev, 1200);
-  }).catch(()=> {
-    alert('Could not copy. Manually select and copy: sword.run.place');
-  });
-});
+<h2>5. Server Rules</h2>
+<p>
+All players must follow the official SwordNetwork rules.
+Failure to follow the rules may result in punishments including warnings,
+mutes, temporary bans, or permanent bans depending on the severity.
+</p>
 
-/* --- Popup open/close (only opens on Join Now click) --- */
-const overlay = document.getElementById('discord-overlay');
-const openBtn = document.getElementById('open-join');
-const closeBtn = document.getElementById('close-popup');
+<h2>6. Purchases and Payments</h2>
+<p>
+SwordNetwork may offer optional purchases such as ranks or perks.
+These payments support the server and help maintain operations.
+Purchases are generally non-refundable unless required by law or approved
+by the administration with valid proof and reasoning.
+</p>
 
-function openPopup() {
-  overlay.classList.add('visible');
-  overlay.setAttribute('aria-hidden','false');
-  // prevent body scrolling while open
-  document.body.style.overflow = 'hidden';
-}
-function closePopup() {
-  overlay.classList.remove('visible');
-  overlay.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
-}
+<h2>7. Punishments</h2>
+<p>
+Staff may issue punishments including warnings, mutes, suspensions,
+temporary bans, or permanent bans if rules are violated.
+Punishments may be applied without prior warning when necessary.
+</p>
 
-openBtn.addEventListener('click', openPopup);
-closeBtn.addEventListener('click', closePopup);
+<h2>8. Service Availability</h2>
+<p>
+SwordNetwork does not guarantee that the server or services will always
+be available. Maintenance, resets, or technical problems may occur.
+We are not responsible for lost items, progress, or in-game currency.
+</p>
 
-// close when clicking outside popup content
-overlay.addEventListener('click', (e) => {
-  if (e.target === overlay) closePopup();
-});
+<h2>9. Termination</h2>
+<p>
+SwordNetwork reserves the right to suspend or terminate access
+to any player for violations of rules or these Terms of Service.
+</p>
 
-/* --- Reveal on scroll for cards --- */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in-view');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.15 });
+<h2>10. Data and Privacy</h2>
+<p>
+Use of the server may require basic data such as Minecraft username,
+IP address, and gameplay data. These are used strictly to operate
+the server and maintain security.
+</p>
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<h2>11. Modifications</h2>
+<p>
+These Terms of Service may be updated at any time.
+Continued use of SwordNetwork means you accept the updated terms.
+</p>
 
-/* --- Lightweight stars background (responsive) --- */
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
+<h2>12. Jurisdiction</h2>
+<p>
+These terms are governed by applicable laws in Kuwait.
+</p>
 
-let stars = [];
-function resizeCanvas() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-  // regenerate stars proportional to screen
-  const count = Math.max(60, Math.floor((canvas.width * canvas.height) / 90000));
-  stars = [];
-  for (let i=0;i<count;i++){
-    stars.push({
-      x: Math.random()*canvas.width,
-      y: Math.random()*canvas.height,
-      r: Math.random()*1.6 + 0.2,
-      a: Math.random()*0.9 + 0.1
-    });
-  }
-}
-function drawStars(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for (const s of stars){
-    ctx.globalAlpha = s.a;
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fill();
-  }
-  requestAnimationFrame(drawStars);
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-drawStars();
-</script>
+</main>
+
+
+<footer class="site-footer">
+© 2026 SwordNetwork
+</footer>
 
 </body>
 </html>
