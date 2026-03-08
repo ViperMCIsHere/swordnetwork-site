@@ -81,11 +81,12 @@ z-index:1;
 /* Hero */
 
 .hero{
+padding:120px 20px 60px 20px;
 text-align:center;
-padding-top:180px;
-padding-bottom:120px;
 }
-
+.hero + .hero{
+padding-top:20px;
+}
 .hero-title{
 font-size:48px;
 font-weight:700;
@@ -263,4 +264,46 @@ transform:translateY(-8px) scale(1.02);
 border-color:rgba(255,255,255,.2);
 box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
+.video-placeholder{
 
+width:700px;
+max-width:90%;
+height:360px;
+
+margin:auto;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+
+backdrop-filter:blur(8px);
+
+}
+
+.placeholder-icon{
+
+font-size:48px;
+opacity:.6;
+margin-bottom:10px;
+
+}
+
+.video-placeholder p{
+
+font-weight:500;
+margin-bottom:4px;
+
+}
+
+.video-placeholder span{
+
+opacity:.6;
+font-size:14px;
+
+}
